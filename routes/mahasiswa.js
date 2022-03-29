@@ -1,19 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/mysql');
-
+const db = require('../config/database/mysql');
+const controller = require('../controller/index');
 
 //mengambil data mahasiswa
-router.get('/', (req,res,next) => {
-    var sql = "SELECT * FROM mahasiswa";
-    db.query(sql, (err, result) => {
-        if (err) throw err;
-        res.status(200).json({
-            message: 'Get Method Mahasiswa',
-            data: result
-        })
-    }) 
-})
+router.get('/', controller.mahasiswa.getAll);
 
 //memasukan data mahasiswa
 router.post('/', (req,res,next) => {
