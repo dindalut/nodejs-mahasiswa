@@ -30,6 +30,27 @@ router.post('/', (req,res,next) => {
 })
 
 //mencari mahasiswa berdasarkan nim
+//re.param adalah cara mengirim nilai lewat url
+//re.query adlaah cara mengirim nilai tidak di url tpi lewat postman yang params key value
+router.get('/search', (req,res,next) => {
+    const nim = req.query.nim;
+    var sql = "SELECT * FROM mahasiswa WHERE nim="+nim;
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        if (result.length > 0) {
+            res.status(200).json({
+                message: 'mahasiswa ditemukan',
+                data: result
+            })
+        } else {
+            res.status(200).json({
+                message: 'mahasiswa tidak ditemukan',
+                data: result
+            })
+        }
+    }) 
+})
+
 router.get('/:nim', (req,res,next) => {
     const nim = req.params.nim;
     var sql = "SELECT * FROM mahasiswa WHERE nim="+nim;
@@ -43,6 +64,7 @@ router.get('/:nim', (req,res,next) => {
 })
 
 //update data mahasiswa
+//re.body itu untuk mengirim data atau update data
 router.put('/', (req,res,next) => {
     const nim = req.body.nim;
     const nama = req.body.nama;
