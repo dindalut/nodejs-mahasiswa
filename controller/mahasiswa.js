@@ -6,14 +6,7 @@ controller.getAll = async function(req,res) {
     try {
         let mahasiswa = await model.mahasiswa.findAll({
             //untuk select beberpa data saja di sequelize menggunakan atribute
-            attributes: [['nim', 'nimMahasiswa'], ['nama', 'namaMahasiswa'],['kd_jurusan', 'kodeJurusan'], ['alamat', 'alamat'], ['angkatan', 'tahunAngkatan']],
-            where:{
-                angkatan: {
-                    [Op.between]: [2018, 2019]
-                }
-            },
-            order: [['angkatan','asc']],
-            limit: 2
+            attributes: [['nim', 'nimMahasiswa'], ['nama', 'namaMahasiswa'],['kd_jurusan', 'kodeJurusan'], ['alamat', 'alamat'], ['angkatan', 'tahunAngkatan']]
         })
             if (mahasiswa.length > 0) {
                 res.status(200).json({
