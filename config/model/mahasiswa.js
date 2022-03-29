@@ -1,3 +1,4 @@
+const { SET } = require('mysql/lib/protocol/constants/types');
 const Sequelize = require('sequelize');
 const db = require('../database/mysql');
 
@@ -8,7 +9,9 @@ const mahasiswa = db.define('mahasiswa',
     {
         nim: Sequelize.INTEGER,
         nama: Sequelize.STRING,
-        jurusan: Sequelize.STRING
+        kd_jurusan: Sequelize.STRING,
+        alamat: Sequelize.STRING,
+        angkatan: Sequelize.STRING
     },{
         freezeTableName: true,
         timestamps: false
