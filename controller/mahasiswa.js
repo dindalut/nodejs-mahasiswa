@@ -3,6 +3,7 @@ const controller = {};
 const {Op} = require('sequelize');
 const db = require('../config/database/mysql');
 
+
 controller.getAll = async function(req,res) {
     try {
         let mahasiswa = await db.query('SELECT mahasiswa.nim as nimMahasiswa, mahasiswa.nama AS namaMahasiswa, mahasiswa.alamat AS alamat, mahasiswa.angkatan AS tahunAngkatan, mahasiswa.kd_jurusan AS kd_jurusan, jurusan.nama_jurusan AS namaJurusan FROM mahasiswa JOIN jurusan ON mahasiswa.kd_jurusan = jurusan.kd_jurusan ORDER BY mahasiswa.nim ASC ')
