@@ -19,12 +19,14 @@ function basicAuthResponse(req){
 }
 
 const mahasiswaRoutes = require('./routes/mahasiswa');
+const axiosRoutes = require('./routes/axios');
 
 app.use(morgan('dev'));
 app.use(bodParser.urlencoded({extended: false}));
 app.use(bodParser.json());
 
 app.use('/mahasiswa', mahasiswaRoutes);
+app.use('/axios', axiosRoutes);
 app.use('/assets', express.static('assets'));
 
 //handling error
