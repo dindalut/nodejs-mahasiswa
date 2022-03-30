@@ -11,7 +11,8 @@ const mahasiswa = db.define('mahasiswa',
         nama: Sequelize.STRING,
         kd_jurusan: Sequelize.STRING,
         alamat: Sequelize.STRING,
-        angkatan: Sequelize.STRING
+        angkatan: Sequelize.STRING,
+        foto: Sequelize.STRING
     },{
         freezeTableName: true,
         timestamps: false

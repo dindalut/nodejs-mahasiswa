@@ -91,7 +91,8 @@ controller.post = async function(req,res) {
             nama: req.body.nama,
             kd_jurusan: req.body.kd_jurusan,
             alamat: req.body.alamat,
-            angkatan: req.body.angkatan
+            angkatan: req.body.angkatan,
+            foto: req.file.path
         })
         res.status(201).json({
             message: "Berhasill tambah data mahasiswa",
@@ -103,6 +104,7 @@ controller.post = async function(req,res) {
         })
     }
 }
+
 
 controller.put = async function(req,res) {
     try {

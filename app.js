@@ -3,7 +3,6 @@ const app = express();
 const morgan = require('morgan');
 const bodParser = require('body-parser');
 
-
 const mahasiswaRoutes = require('./routes/mahasiswa');
 
 app.use(morgan('dev'));
@@ -11,6 +10,7 @@ app.use(bodParser.urlencoded({extended: false}));
 app.use(bodParser.json());
 
 app.use('/mahasiswa', mahasiswaRoutes);
+app.use('/assets', express.static('assets'));
 
 //handling error
 app.use((req,res,next) => {
