@@ -2,7 +2,11 @@ const axios = require('axios');
 const controller = {}
 
 controller.getAll = async function (req,res){
-    axios.get('http://jsonplaceholder.typicode.com/posts')
+    axios({
+        method: 'get',
+        url: 'http://jsonplaceholder.typicode.com/posts'
+    })
+    //axios.get('http://jsonplaceholder.typicode.com/posts')
     .then(function(response){
         res.status(200).json({
             message: 'Data dari public API',

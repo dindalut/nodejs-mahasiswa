@@ -7,16 +7,16 @@ const helmet = require('helmet');
 
 app.use(helmet());
 
-app.use(basicAuth({
-    users: {'admin' : 'supersecret'},
-    unauthorizedResponse: basicAuthResponse
-}))
+// app.use(basicAuth({
+//     users: {'admin' : 'supersecret'},
+//     unauthorizedResponse: basicAuthResponse
+// }))
 
-function basicAuthResponse(req){
-    return req.auth 
-        ? ('Credentials' + req.auth.user + ':' +req.auth.password+ 'rejected')
-        : 'Unauthorized'
-}
+// function basicAuthResponse(req){
+//     return req.auth 
+//         ? ('Credentials' + req.auth.user + ':' +req.auth.password+ 'rejected')
+//         : 'Unauthorized'
+// }
 
 const mahasiswaRoutes = require('./routes/mahasiswa');
 const axiosRoutes = require('./routes/axios');
