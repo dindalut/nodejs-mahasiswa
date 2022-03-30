@@ -1,16 +1,11 @@
 const model = require('../config/model/index');
 const controller = {};
 const {Op} = require('sequelize');
+const db = require('../config/database/mysql');
 
 controller.getAll = async function(req,res) {
     try {
-        let mahasiswa = await model.mahasiswa.findAll({
-            //untuk select beberpa data saja di sequelize menggunakan atribute
-            attributes: [['nim', 'nimMahasiswa'], ['nama', 'namaMahasiswa'],['kd_jurusan', 'kodeJurusan'], ['alamat', 'alamat'], ['angkatan', 'tahunAngkatan']],
-            include: [
-                { model: model.jurusan}
-            ]
-        })
+        let mahasiswa = await db.query('SELECT mahasiswa.nim as nimMahasiswa, mahasiswa.nama AS namaMahasiswa, mahasiswa.alamat AS alamat, mahasiswa.angkatan AS tahunAngkatan, mahasiswa.kd_jurusan AS kd_jurusan, jurusan.nama_jurusan AS namaJurusan FROM mahasiswa JOIN jurusan ON mahasiswa.kd_jurusan = jurusan.kd_jurusan ORDER BY mahasiswa.nim ASC ')
             if (mahasiswa.length > 0) {
                 res.status(200).json({
                     message: "Get data semua Mahasiswa",
