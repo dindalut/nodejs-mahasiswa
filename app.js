@@ -5,6 +5,11 @@ const bodParser = require('body-parser');
 const basicAuth = require('express-basic-auth');
 const helmet = require('helmet');
 
+//SWAGGER
+const swaggerUI = require('swagger-ui-express');
+const apiDocumentation = require('./apidoc.json');
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(apiDocumentation));
+//END SWAGGER
 app.use(helmet());
 
 // app.use(basicAuth({
