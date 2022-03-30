@@ -2,6 +2,21 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodParser = require('body-parser');
+const basicAuth = require('express-basic-auth');
+const helmet = require('helmet');
+
+app.use(helmet());
+
+app.use(basicAuth({
+    users: {'admin' : 'supersecret'},
+    unauthorizedResponse: basicAuthResponse
+}))
+
+function basicAuthResponse(req){
+    return req.auth 
+        ? ('Credentials' + req.auth.user + ':' +req.auth.password+ 'rejected')
+        : 'Unauthorized'
+}
 
 const mahasiswaRoutes = require('./routes/mahasiswa');
 
